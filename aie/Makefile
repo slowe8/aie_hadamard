@@ -18,8 +18,9 @@ DATA_DIR = $(shell readlink -f data/)
 GRAPH_CPP := $(SRC_DIR)/graph.cpp
 DEPS := $(GRAPH_CPP)
 DEPS += $(SRC_DIR)/graph.hpp
-DEPS += $(SRC_DIR)/hadamard_stream.cc
-DEPS += $(SRC_DIR)/hadamard_stream.hpp
+DEPS += $(SRC_DIR)/generic_gate1q.cc
+DEPS += $(SRC_DIR)/generic_gate1q.hpp
+DEPS += $(SRC_DIR)/gate1q.hpp
 AIE_FLAGS += --platform=$(XPFM)
 
 all: $(BUILD_DIR)/libadf.a

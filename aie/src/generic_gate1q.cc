@@ -1,4 +1,8 @@
-#include <math>
+#include <cmath>
+
+#ifndef M_PI
+  #define M_PI 3.14159265358979323846
+#endif
 
 #include <aie_api/aie.hpp>
 #include <adf.h>
@@ -11,9 +15,11 @@ void generic_gate1q(
 	input_stream_cfloat *input_state,
 	output_stream_cfloat *output_state,
 	int32 num_qubits,
-	Gate1Q gate,
+	int32 gate,
 	int32 target
 ) {
+
+	Gate1Q gate_id = static_cast<Gate1Q>(gate);
 
 	const int N = 1 << num_qubits;		// Size of state
 	const int stride = 1 << target;
@@ -37,7 +43,7 @@ void generic_gate1q(
 			cfloat a = state[idx0];
 			cfloat b = state[idx1];
 
-			switch (gate) {
+			switch (gate_id) {
 				case Gate1Q::H:
 					state[idx0] = norm * (a + b);
 					state[idx1] = norm * (a - b);
